@@ -18,16 +18,3 @@ task("add-voting", "Adds a new voting")
         await voting.deployed()
         console.log(`Deployed contract to: ${voting.address}`)
     })
-
-// task("vote", "User votes to candidate")
-//     .addParam("contractAddress")
-//     .addParam("candidateIndex")
-//     .setAction(async (taskArgs, hre) => {
-
-//         const voting = await Voting.deploy([
-//             taskArgs.account2,
-//             taskArgs.account3,
-//         ])
-//         await voting.deployed()
-//         console.log(`Deployed contract to: ${voting.address}`)
-//     })

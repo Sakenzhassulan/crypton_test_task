@@ -33,7 +33,7 @@ contract Voting {
     address public owner;
     mapping(address => Voter) public voters;
     uint256 public createdTime;
-    uint256 public stepTime = 2 minutes;
+    uint256 public stepTime = 5 minutes;
     Proposal public winner;
 
     constructor(address[] memory proposalAddresses) {
@@ -65,7 +65,6 @@ contract Voting {
     }
 
     function completeVoting() public {
-        // require(voters[msg.sender],"You aren't voter");
         require(voters[msg.sender].voted, "You aren't voter"); //Голосование может закрыть только тот, кто проголосовал
         require(
             block.timestamp >= (createdTime + stepTime),
@@ -93,4 +92,15 @@ contract Voting {
         );
         payable(owner).transfer(address(this).balance);
     }
+
+    function getProposals() public view returns (Proposal[] memory) {
+        return proposals;
+    }
+
+    function getWinner() public view returns (Proposal memory) {
+        return winner;
+    }
+    // function getVoters(address _voterAddress) public view returns(Voter ) {
+    //     return voters[_voterAddress]
+    // }
 }
